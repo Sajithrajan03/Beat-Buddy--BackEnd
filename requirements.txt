@@ -2,3 +2,5 @@ matplotlib
 seaborn
 wordcloud
 scikit-learn
+flask
+streamlit
