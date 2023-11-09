@@ -1,7 +1,7 @@
 def search_song(song_name, dat):
 
-    dat_song = dat.query('name == @song_name')
-    if dat_song.shape[0] == 0:
+    # dat_song = dat.query('name == @song_name')
+    if song_name==""  is None:
         found_flag = False
         found_song = None
         # raise Exception('The song does not exist in the dataset!')
