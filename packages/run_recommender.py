@@ -7,7 +7,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 def get_feature_vector(song_name, year, dat, features_list):
     print(dat.head())
     # select dat with the song name and year
+    song_name = song_name.upper()
+     
     dat_song = dat.query('name == @song_name and year == @year')
+     
     song_repeated = 0
     if len(dat_song) == 0:
         raise Exception('The song does not exist in the dataset or the year is wrong! \
@@ -16,7 +19,9 @@ def get_feature_vector(song_name, year, dat, features_list):
         song_repeated = dat_song.shape[0]
         print(f'Warning: Multiple ({song_repeated}) songs with the same name and artist, the first one is selected!')
         dat_song = dat_song.head(1)
+       
     feature_vector = dat_song[features_list].values
+    print(type(feature_vector),type(song_repeated))
     return feature_vector, song_repeated
 
 # define a function to get the most similar songs
@@ -26,16 +31,16 @@ def show_similar_songs(song_name, year, dat, features_list, top_n=10, plot_type=
     feature_for_recommendation = dat[features_list].values
     # calculate the cosine similarity
     similarities = cosine_similarity(feature_for_recommendation, feature_vector).flatten()
-
+    print(similarities)
     # get the index of the top_n similar songs not including itself
     if song_repeated == 0:
         related_song_indices = similarities.argsort()[-(top_n+1):][::-1][1:]
     else:
-        related_song_indices = similarities.argsort()[-(top_n+1+song_repeated):][::-1][1+song_repeated:]
+        related_song_indices = similarities.argsort()[-(int(top_n)+1+int(song_repeated)):][::-1][1+int(song_repeated):]
         
     # get the name, artist, and year of the most similar songs
     similar_songs = dat.iloc[related_song_indices][['name', 'artists', 'year']]
-    
+    print(similar_songs)
     fig, ax = plt.subplots(figsize=(7, 5))
     if plot_type == 'wordcloud':
         # make a word cloud of the most similar songs and year, use the simalirity score as the size of the words
@@ -81,5 +86,5 @@ def show_similar_songs(song_name, year, dat, features_list, top_n=10, plot_type=
         
     else:
         raise Exception('Plot type must be either wordcloud or bar!')
-    
-    return fig
+    data = similar_songs.to_dict('records')
+    return fig,data
