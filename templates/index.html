@@ -22,7 +22,7 @@
     </form>
     <div id='info_section'>
         {% for song in data %}
-        <p>Song Name: {{ song[0] }}, Artist(s): {{ song[1] }}}</p>
+        <p>{{song['name+year' ]}}</p>
         {% endfor %}
     </div>
 
