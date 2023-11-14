@@ -24,26 +24,36 @@ app = Flask(__name__,template_folder='templates',static_folder='static')
 def index():
     return render_template('index.html')
 
-@app.route('/search', methods=['POST'])
+@app.route('/search.html', methods=['GET'])
+def search_template(): 
+    return render_template('search.html')
+
+ 
+ 
+@app.route('/search', methods=['GET','POST'])
 def search():
-    print(request.form)
-    song_name = request.form.get('song_name')
-    year = request.form.get('year')
-    
-    # Call your search function and process the input values
-    found_flag, found_song  = search_song(song_name,dat)
-    if found_flag:
-            print("Perfect, this song is in the dataset:")
-              
-            for i in range(len(found_song)):
-                print("Song Name: " + found_song[i][0])
-                print("Artist(s): " + found_song[i][1])
-                print("Release Date: " + found_song[i][2])
-
-
+    print(request.method)
+    if request.method == 'GET':
+        return render_template('search.html')
     else:
-        print("Sorry, this song is not in the dataset. Please try another song!")
-    return render_template("index.html", data=found_song) 
+        print(request.form)
+        song_name = request.form.get('song_name')
+        year = request.form.get('year')
+        
+        # Call your search function and process the input values
+        found_flag, found_song  = search_song(song_name,dat)
+        if found_flag:
+                print("Perfect, this song is in the dataset:")
+                
+                for i in range(len(found_song)):
+                    print("Song Name: " + found_song[i][0])
+                    print("Artist(s): " + found_song[i][1])
+                    print("Release Date: " + found_song[i][2])
+
+
+        else:
+            print("Sorry, this song is not in the dataset. Please try another song!")
+        return render_template("search.html", data=found_song) 
 
 @app.route('/recommendations', methods=['POST'])
 def recommendations():

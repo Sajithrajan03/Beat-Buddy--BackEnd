@@ -10,21 +10,22 @@
     
     <h2>Welcome to your personalized music recommender!</h2>
     <p>Search for a song and get recommendations. Customize the recommendations by choosing the factors you care about. Enjoy!</p>
-
+    
     <!-- Search form -->
-    <form action="/search" method="post">
-        <h3>Search for a Song</h3>
-        <label for="song_name">Enter the name of the song:</label>
-        <input type="text" id="song_name" name="song_name" required>
-        <label for="year">Enter the year of the song (e.g. 2019):</label>
-        <input type="text" id="year" name="year">
-        <button type="submit">Search</button>
-    </form>
+    <a href="/search"><button type="submit">Search</button></a>
+        
+        
+
     <div id='info_section'>
-        {% for song in data %}
-        <p>{{song['name+year' ]}}</p>
-        {% endfor %}
+        {% if data is not none %}
+            {% for song in data %}
+                <p>{{ song['name+year'] }}</p>
+            {% endfor %}
+        {% else %}
+            <p>No data available.</p>
+        {% endif %}
     </div>
+    
 
     <!-- Recommendations -->
     <h3>Get Recommendations</h3>
