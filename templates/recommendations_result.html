@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Recommendations Results</h1>
+     
+        {% for song in data %}
+            <div>
+                <h2>{{ song['name+year' ] }}</h2>
+                <p>Artist(s): {{ song['artists'] }}</p>
+               
+            </div>
+        
+        {% endfor %}
+
+       
+</body>
+</html>

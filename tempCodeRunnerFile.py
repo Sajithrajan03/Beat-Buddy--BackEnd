@@ -1,1 +1,1 @@
-search-result
+recommendations_result

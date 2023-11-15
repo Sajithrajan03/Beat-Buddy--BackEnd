@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Search Results</h1>
+     
+        {% for song in data %}
+            <div>
+                <h2>{{ song[0] }}</h2>
+                <p>Artist(s): {{ song[1] }}</p>
+                <p>Release Date: {{ song[2] }}</p>
+            </div>
+        
+        {% endfor %}
+</body>
+</html>

@@ -40,8 +40,9 @@ def show_similar_songs(song_name, year, dat, features_list, top_n=10, plot_type=
         
     # get the name, artist, and year of the most similar songs
     similar_songs = dat.iloc[related_song_indices][['name', 'artists', 'year']]
-    print(similar_songs)
-    fig, ax = plt.subplots(figsize=(7, 5))
+    
+    similar_songs['name+year'] = similar_songs['name'] + ' (' + similar_songs['year'].astype(str) + ')'
+    # fig, ax = plt.subplots(figsize=(7, 5))
     if plot_type == 'wordcloud':
         # make a word cloud of the most similar songs and year, use the simalirity score as the size of the words
         similar_songs['name+year'] = similar_songs['name'] + ' (' + similar_songs['year'].astype(str) + ')'
@@ -87,4 +88,5 @@ def show_similar_songs(song_name, year, dat, features_list, top_n=10, plot_type=
     else:
         raise Exception('Plot type must be either wordcloud or bar!')
     data = similar_songs.to_dict('records')
-    return fig,data
+    print(data)
+    return data

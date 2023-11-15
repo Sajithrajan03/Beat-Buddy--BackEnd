@@ -20,3 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
         recommendationsForm.submit();
     });
 });
+
+function updateSliderValue() {
+    var slider = document.getElementById("valueSlider");
+    var displayValue = document.getElementById("selectedValue");
+    displayValue.innerText = slider.value;
+}

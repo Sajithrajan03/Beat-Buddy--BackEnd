@@ -8,24 +8,27 @@
 <body>
     <h1>BeatBuddy - Music Recommender</h1>
     
-    <h2>Welcome to your personalized music recommender!</h2>
     <p>Search for a song and get recommendations. Customize the recommendations by choosing the factors you care about. Enjoy!</p>
 
     <!-- Search form -->
-    <form action="/search_result" method="post" enctype="multipart/form-data">
+    <form action="/recommendations_result" method="post" enctype="multipart/form-data">
         <h3>Search for a Song</h3>
         <label for="song_name">Enter the name of the song:</label>
         <input type="text" id="song_name" name="song_name" required>
         <label for="year">Enter the year of the song (e.g. 2019):</label>
         <input type="text" id="year" name="year">
+        
+        <input type="range" id="num_recommendations" name="num_recommendations" min="10" max="40" step="10" value="10" list="tickmarks" oninput="updateSliderValue()">
+        <datalist id="tickmarks">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+        </datalist>
         <button type="submit">Search</button>
     </form>
 
-    <div id='info_section'>
-        {% for song in data %}
-        <p>{{song['name+year' ]}}</p>
-        {% endfor %}
-    </div>
+   
     
 
     <!-- Add any JavaScript if needed -->
