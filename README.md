@@ -2,6 +2,8 @@
 
 Welcome to BeatBuddy, a customized music recommender app! Try out : https://beat-buddy.streamlit.app/
 
+To Contributors :  Use the Flask_app.py as the main file.
+
 ## Features
 
 - Search for a song and get recommendations based on the searched song.
