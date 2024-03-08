@@ -5,20 +5,21 @@
     <!-- Add any CSS or stylesheets here -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-    <h1>BeatBuddy - Music Recommender</h1>
+<body class="bg-gray-900">
+    <div class="container mx-auto px-6 py-8">
+    <h1 class="text-4xl font-bold text-center mt-8 text-gray-100 animate-scale-in">BeatBuddy - Music Recommender</h1>
     
-    <h2>Welcome to your personalized music recommender!</h2>
-    <p>Search for a song and get recommendations. Customize the recommendations by choosing the factors you care about. Enjoy!</p>
+    <h2 class="text-2xl font-bold text-center mt-4 animate-fade-in text-gray-200 ">Welcome to your personalized music recommender!</h2>
+    <p class="text-center mt-4 animate-fade-in animate-bounce text-gray-200">Search for a song and get recommendations. Customize the recommendations by choosing the factors you care about. Enjoy!</p>
     
     <hr>
     <hr>
     <!-- Search form -->
-    <h3>Search for your songs</h3>
-    <a href="/search"><button type="submit">Search</button></a>
+    <h3 class="text-xl font-bold animate-fade-in text-gray-200">Search for your songs</h3>
+    <a href="/search"><button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md animate-fade-in button-field button-align">Search</button></a>
         
-    <h3>Get Recommendations</h3>
-    <a href="/recommendations"><button type="submit">Get Recommendations</button></a>
+    <h3 class="text-xl font-bold mt-8 animate-fade-in text-gray-100">Get Recommendations</h3>
+    <a href="/recommendations"><button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md animate-fade-in button-field button-align">Get Recommendations</button></a>
     
 
 
@@ -29,5 +30,6 @@
 
     <!-- Add any JavaScript if needed -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+</div>
 </body>
 </html>

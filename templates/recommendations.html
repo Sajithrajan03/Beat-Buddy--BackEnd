@@ -5,27 +5,36 @@
     <!-- Add any CSS or stylesheets here -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-    <h1>BeatBuddy - Music Recommender</h1>
-    
-    <p>Search for a song and get recommendations. Customize the recommendations by choosing the factors you care about. Enjoy!</p>
+<body class="bg-gray-900">
+    <div class="container mx-auto px-6 py-8">
+        <h1 class="text-4xl font-bold text-center mt-8 text-gray-100 animate-scale-in">BeatBuddy - Music Recommender</h1>
+        
+        <h2 class="text-2xl font-bold text-center mt-4 animate-fade-in text-gray-200 ">Welcome to your personalized music recommender!</h2>
+        <p class="text-center mt-4 animate-fade-in animate-bounce text-gray-200">Search for a song and get recommendations. Customize the recommendations by choosing the factors you care about. Enjoy!</p>
 
     <!-- Search form -->
-    <form action="/recommendations_result" method="post" enctype="multipart/form-data">
-        <h3>Search for a Song</h3>
-        <label for="song_name">Enter the name of the song:</label>
-        <input type="text" id="song_name" name="song_name" required>
-        <label for="year">Enter the year of the song (e.g. 2019):</label>
-        <input type="text" id="year" name="year">
+    <form action="/recommendations_result" method="post" enctype="multipart/form-data" class="mt-4">
+        <h3 class="text-xl font-bold mt-8 animate-fade-in text-gray-100">Get Recommendations</h3>
+        <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+            <div class="flex-1">
+                <label for="song_name" class="block text-gray-400 font-bold mb-2">Enter the name of the song:</label>
+                <input type="text" id="song_name" name="song_name" required class="w-3 px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent animate-fade-in input-field">
+            </div>
+            <div class="flex-1">
+                <label for="year" class="block text-gray-400 font-bold mb-2">Enter the year of the song (e.g. 2019):</label>
+                <input type="text" id="year" name="year" class="w-2 px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent animate-fade-in input-field">
+            </div>
+            <div class="flex-1">
+                <label for="num_recommendations" class="block text-gray-400 font-bold mb-2">Number of Recommendations:</label>
+                <input type="number" id="num_recommendations" name="num_recommendations" min="10" max="50" value="10" class="w-3 px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent animate-fade-in input-field">
+            </div>
+        </div>
         
-        <input type="range" id="num_recommendations" name="num_recommendations" min="10" max="40" step="10" value="10" list="tickmarks" oninput="updateSliderValue()">
-        <datalist id="tickmarks">
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-        </datalist>
-        <button type="submit">Search</button>
+        <div class="flex-none flex flex-col justify-center mt-4">
+            <div class="flex-1">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md animate-fade-in button-field button-align">Get Recommendations</button>
+            </div>
+        </div>
     </form>
 
    
@@ -33,5 +42,6 @@
 
     <!-- Add any JavaScript if needed -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+</div>
 </body>
 </html>
